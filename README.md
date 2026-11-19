@@ -27,9 +27,17 @@ The helper prints candidate APIs plus the catalog path and SHA-256. Catalog valu
 ## Tests
 
 ```bash
-cd tests
-python3 -m unittest -v test_search_catalog
+python3 -m unittest discover -s tests -t . -v
 ```
+
+## Integrity
+
+```bash
+python3 scripts/catalog_integrity.py check
+python3 scripts/catalog_integrity.py refresh --dry-run
+```
+
+`check` verifies the pinned catalog blob and the sha256 references in `SKILL.md` and `README.md`. `refresh --dry-run` fetches upstream and reports drift without writing. Applying a refresh requires a reviewed `--expected-blob-sha`.
 
 ## Provenance
 
@@ -38,6 +46,12 @@ python3 -m unittest -v test_search_catalog
 - Snapshot SHA-256: `76386caf705629490bdc4db8ccb2cd246bc16833e5fc7154f5b3745b7976876a`
 - Upstream catalog git blob: `cd696bf7f71aa6b5c119e056368d3aff3c264332`
 - Upstream license: MIT, Copyright (c) 2022 public-apis (`catalog/LICENSE`)
+
+## Project documents
+
+- [CHANGELOG.md](CHANGELOG.md) — release and hardening history
+- [CONTRIBUTING.md](CONTRIBUTING.md) — contribution and catalog-update rules
+- [PRESSURE-TEST-EVIDENCE.md](PRESSURE-TEST-EVIDENCE.md) — fresh-agent compliance results
 
 ## License
 
